@@ -33,6 +33,8 @@ In der DNS-Verwaltung von `ottaris.com` vorhandene Einträge für `@` (die Domai
 
 Der TXT-Eintrag aus Schritt 2 bleibt stehen. Manche Anbieter schreiben statt `@` einfach nichts oder den Domainnamen.
 
+**Bei checkdomain:** Domain anklicken → Kachel **checkdomain Nameserver** → **Profi-Einstellungen**. Hostname **leer** steht für die Domain selbst (`ottaris.com` wird hinten angehängt), bei `www` und beim TXT-Eintrag nur den vorderen Teil eintragen. TTL und Priorität leer lassen. Den vorhandenen MX-Eintrag (E-Mail) stehen lassen. In der Kachel **Domainweiterleitung** darf für `ottaris.com` nichts eingerichtet sein.
+
 ## 4. Domain im Repo eintragen
 
 Repo **ottaris-web** → *Settings* → *Pages* → *Custom domain*: `ottaris.com` → *Save*. GitHub prüft die DNS-Einträge (bis zu einer Stunde, selten länger). Wenn der Haken grün ist: **Enforce HTTPS** anhaken. Das Zertifikat kommt von selbst, meist nach wenigen Minuten.

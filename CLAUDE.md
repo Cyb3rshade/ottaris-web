@@ -4,6 +4,7 @@ Webseite der Dachmarke **Ottaris** unter `ottaris.com`. Gemeinsame Regeln: `../.
 
 ## Stand (23.11.2026)
 
+- **Online** über GitHub Pages (Repo öffentlich, Quelle „GitHub Actions“). Domain `ottaris.com` bei checkdomain eingerichtet und bei GitHub bestätigt (23.11.2026), HTTPS-Zertifikat stand noch aus. `ottaris.de` leitet noch nicht weiter.
 - Nur eine **„Bald da“-Seite**: Abzeichen, Schriftzug, Satz „Software, die Orientierung gibt.“, Hinweis „Bald da“. Keine Apps, kein Kontakt, kein Formular.
 - Dunkel = Nachthimmel mit funkelnden Sternen, Sternschnuppe und treibenden Wellen. Hell = Morgendämmerung in Creme und Gold. Umschaltung nur über die Geräte-Einstellung (`prefers-color-scheme`), kein Schalter, weil es keine Skripte gibt.
 - **Kein Impressum und keine Datenschutzerklärung**, weil Melvin dafür erst eine Impressum-Adresse (Service mit c/o-Anschrift) besorgt. Sobald Inhalte dazukommen (Apps, Kontakt, Über mich), müssen beide vorher rein.
