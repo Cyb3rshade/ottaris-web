@@ -146,10 +146,12 @@ h1 img { display: block; width: clamp(190px, 52vw, 340px); height: auto; }
 .waves { position: fixed; left: 0; right: 0; bottom: 0; height: 17vh; min-height: 90px; pointer-events: none; overflow: hidden; }
 .waves svg { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; }
 .waves::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, var(--bg-bottom) 100%); }
-.waves .w1 { fill: var(--w1); animation: drift 46s linear infinite; }
-.waves .w2 { fill: var(--w2); animation: drift 31s linear -8s infinite reverse; }
-.waves .w3 { fill: var(--w3); animation: drift 22s linear -4s infinite; }
+.waves .w1 { fill: var(--w1); animation: drift 30s linear infinite, swell 6s ease-in-out infinite; }
+.waves .w2 { fill: var(--w2); animation: drift 21s linear -8s infinite reverse, swell 4.8s ease-in-out -1.6s infinite; }
+.waves .w3 { fill: var(--w3); animation: drift 15s linear -4s infinite, swell 5.4s ease-in-out -3s infinite; }
 @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* Dünung: hebt und senkt jede Schicht, unabhängig vom Treiben (eigene Eigenschaft translate) */
+@keyframes swell { 0%, 100% { translate: 0 0; } 50% { translate: 0 9%; } }
 
 footer {
   position: fixed; left: 0; right: 0; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 1;
