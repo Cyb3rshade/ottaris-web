@@ -1,0 +1,58 @@
+name: Ottaris-Webseite veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Code holen
+        uses: actions/checkout@v6
+
+      - name: Sicherheitscheck – keine Keys oder Tokens im Repo
+        run: |
+          if grep -rEn "sk-ant-[A-Za-z0-9_-]{10,}|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|ST1\\.[A-Za-z0-9_-]{60,}|GR1\\.[A-Za-z0-9_-]{60,}" --exclude-dir=.git .; then
+            echo "::error::Möglicher Key, Token oder Verbindungscode gefunden. Deploy abgebrochen."
+            exit 1
+          fi
+
+      - name: Nichts von außen laden
+        run: |
+          if grep -nP '(src|href|srcset)="(https?:)?//(?!ottaris\.com/)' *.html || grep -nE 'url\((["'"'"'])?(https?:)?//' style.css || grep -nE '<script' *.html; then
+            echo "::error::Externe Adresse oder Skript gefunden. Schriften und Bilder gehören ins Repo, die Seite kommt ohne Skripte aus."
+            exit 1
+          fi
+
+      - name: Seite zusammenstellen
+        run: |
+          mkdir _site
+          cp -r index.html 404.html style.css favicon.svg favicon-32.png apple-touch-icon.png og.png img fonts _site/
+          echo "### Ottaris-Webseite, Stand $(date -u +%Y.%m.%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Pages einrichten
+        uses: actions/configure-pages@v5
+
+      - name: Paket hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
