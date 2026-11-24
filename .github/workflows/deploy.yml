@@ -49,7 +49,7 @@ jobs:
       - name: Seite zusammenstellen
         run: |
           mkdir _site
-          cp -r index.html 404.html datenschutz.html style.css favicon.svg favicon-32.png apple-touch-icon.png og.png img fonts _site/
+          cp -r index.html 404.html datenschutz.html raredrop.html style.css favicon-32.png favicon-48.png apple-touch-icon.png og.png img fonts _site/
           echo "### Ottaris-Webseite, Stand $(date -u +%Y.%m.%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Pages einrichten
