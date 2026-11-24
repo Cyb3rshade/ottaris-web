@@ -391,6 +391,83 @@ footer { position: relative; z-index: 1; margin-top: clamp(56px, 9vw, 96px); pad
 .doc a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
 .doc .stand { font-size: 14px; margin-top: 18px; }
 
+/* Vorschau: drei Szenen, umgeschaltet nur mit Radio-Knöpfen und CSS (keine Skripte) */
+.sr { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.peek { display: grid; gap: 22px; position: relative; }
+.peek-nav { display: grid; gap: 10px; }
+.peek-nav label {
+  display: grid; gap: 4px; padding: 14px 18px; border-radius: 18px; cursor: pointer;
+  background: var(--panel); box-shadow: inset 0 0 0 1px var(--panel-line);
+  transition: background .2s, box-shadow .2s;
+}
+.peek-nav label b { font-size: 16px; font-weight: 700; }
+.peek-nav label span { display: none; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+.peek-nav label:hover { background: var(--panel-strong); }
+#sz1:checked ~ .peek-nav label[for="sz1"],
+#sz2:checked ~ .peek-nav label[for="sz2"],
+#sz3:checked ~ .peek-nav label[for="sz3"] { background: var(--panel-strong); box-shadow: inset 0 0 0 1.5px var(--rule); }
+#sz1:focus-visible ~ .peek-nav label[for="sz1"],
+#sz2:focus-visible ~ .peek-nav label[for="sz2"],
+#sz3:focus-visible ~ .peek-nav label[for="sz3"] { outline: 2px solid var(--focus); outline-offset: 3px; }
+.peek-stage { display: grid; justify-items: center; gap: 12px; order: -1; }
+.peek-note { font-size: 13px; color: var(--muted); text-align: center; max-width: 36ch; }
+.peek-caps p { display: none; color: var(--muted); font-size: 16px; text-align: center; max-width: 40ch; margin-inline: auto; }
+#sz1:checked ~ .peek-caps .c1, #sz2:checked ~ .peek-caps .c2, #sz3:checked ~ .peek-caps .c3 { display: block; }
+
+.phone.demo { animation: none; transform: rotate(-1.2deg); }
+.screen.multi { position: relative; padding: 0; display: block; }
+.screen.multi .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); z-index: 1; }
+.scr {
+  position: absolute; inset: 0; padding: 26px 14px 14px; display: grid; gap: 10px; align-content: start;
+  grid-template-rows: auto auto 1fr auto; opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .25s, transform .25s, visibility 0s .25s;
+}
+.scr.s3 { grid-template-rows: auto 1fr auto auto; }
+#sz1:checked ~ .peek-stage .s1, #sz2:checked ~ .peek-stage .s2, #sz3:checked ~ .peek-stage .s3 {
+  opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .25s;
+}
+.chip-row { display: flex; gap: 8px; }
+.chip-row .chip { padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; background: rgba(244, 248, 255, .1); box-shadow: inset 0 0 0 1px rgba(246, 221, 162, .3); }
+.chip-row .chip.warn { color: var(--hellgold); }
+.pocket.empty > span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: rgba(244, 248, 255, .55); }
+.card-row { display: flex; align-items: center; gap: 12px; }
+.card-row p { font-size: 12px; line-height: 1.35; color: rgba(244, 248, 255, .7); }
+.card-row p b { display: block; font-size: 14px; color: var(--sternweiss); }
+.mini { flex: none; width: 46px; aspect-ratio: 5 / 7; border-radius: 5px; background: linear-gradient(150deg, var(--card-rose-a), var(--card-rose-b)); box-shadow: 0 4px 10px rgba(0, 0, 0, .35), inset 0 0 0 1px rgba(255, 255, 255, .3); }
+.prices { list-style: none; margin: 0; padding: 0; display: grid; gap: 15px; align-content: center; }
+.prices li { display: grid; grid-template-columns: 74px 1fr 52px; align-items: center; gap: 8px; font-size: 12px; }
+.prices li span { color: rgba(244, 248, 255, .75); }
+.prices li b { text-align: right; font-size: 13px; color: var(--sternweiss); }
+.pbar { display: block; height: 8px; border-radius: 4px; background: rgba(244, 248, 255, .1); position: relative; overflow: hidden; }
+.pbar::after { content: ""; position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--bc-b), var(--bc-a)); width: var(--w); }
+.pbar.p1 { --w: 6%; --bc-a: #c9d3e6; --bc-b: #7f8aa3; }
+.pbar.p2 { --w: 14%; --bc-a: var(--card-a); --bc-b: var(--card-b); }
+.pbar.p3 { --w: 28%; --bc-a: var(--card-teal-a); --bc-b: var(--card-teal-b); }
+.pbar.p4 { --w: 52%; --bc-a: var(--card-violet-a); --bc-b: var(--card-violet-b); }
+.pbar.p5 { --w: 100%; --bc-a: var(--card-rose-a); --bc-b: var(--card-rose-b); }
+.screen .ttl .live { display: inline-flex; align-items: center; gap: 6px; }
+.screen .ttl .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--hellgold); }
+.qr-box { display: grid; place-items: center; align-self: center; }
+.qr { width: min(172px, 100%); aspect-ratio: 1; padding: 10px; border-radius: 14px; background: #fff; color: #091226; box-shadow: 0 8px 22px rgba(0, 0, 0, .4); }
+.qr svg { display: block; width: 100%; height: 100%; }
+.toggles { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.toggles li { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; border-radius: 12px; background: rgba(244, 248, 255, .07); font-size: 13px; font-weight: 600; }
+.sw { width: 38px; height: 22px; border-radius: 11px; background: rgba(244, 248, 255, .2); position: relative; }
+.sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
+.sw.on { background: linear-gradient(180deg, #F6DDA2, #C9934A); }
+.sw.on::after { transform: translateX(16px); background: #091226; }
+
+@media (min-width: 900px) {
+  .peek { grid-template-columns: 1fr auto; align-items: center; gap: clamp(32px, 6vw, 80px); }
+  .peek-nav { gap: 12px; }
+  .peek-nav label { padding: 20px 24px; }
+  .peek-nav label b { font-size: 18px; }
+  .peek-nav label span { display: block; }
+  .peek-stage { order: 0; grid-column: 2; grid-row: 1; }
+  .peek-caps { display: none; }
+}
+@media (max-width: 899px) { .peek-nav { grid-template-columns: repeat(3, 1fr); gap: 8px; } .peek-nav label { padding: 12px 8px; text-align: center; } .peek-nav label b { font-size: 13.5px; line-height: 1.25; } }
+
 /* Ab Tablet */
 @media (min-width: 720px) {
   .hero-grid { grid-template-columns: 1.15fr .85fr; }
