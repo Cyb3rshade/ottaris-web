@@ -37,9 +37,9 @@
   --btn-ink: #091226;
   --btn-shadow: 0 8px 24px rgba(201, 147, 74, .28);
   --ghost-line: rgba(244, 248, 255, .32);
-  --w1: rgba(47, 102, 153, .55);
-  --w2: rgba(111, 166, 210, .32);
-  --w3: rgba(111, 166, 210, .16);
+  --w1: rgba(50, 102, 127, .6);
+  --w2: rgba(101, 152, 168, .34);
+  --w3: rgba(101, 152, 168, .17);
   --stars-1: url("img/sterne-1.svg");
   --stars-2: url("img/sterne-2.svg");
   --shoot: #FFFFFF;
@@ -85,9 +85,9 @@
     --btn-ink: #F6DDA2;
     --btn-shadow: 0 8px 22px rgba(9, 18, 38, .24);
     --ghost-line: rgba(9, 18, 38, .32);
-    --w1: rgba(47, 102, 153, .32);
-    --w2: rgba(111, 166, 210, .3);
-    --w3: rgba(111, 166, 210, .18);
+    --w1: rgba(50, 102, 127, .34);
+    --w2: rgba(101, 152, 168, .32);
+    --w3: rgba(101, 152, 168, .2);
     --stars-1: url("img/sterne-hell.svg");
     --stars-2: none;
     --shoot: var(--gold);
@@ -214,7 +214,7 @@ p { margin: 0; text-wrap: pretty; }
 
 /* Wellen am unteren Rand des Startbereichs, drei Schichten treiben unterschiedlich schnell */
 .waves { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(110px, 16vw, 170px); pointer-events: none; overflow: hidden; }
-.waves svg { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; }
+.waves svg { position: absolute; left: 0; bottom: 0; width: 200%; max-width: none; height: 100%; }
 .waves::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, var(--bg-mid) 100%); }
 .waves .w1 { fill: var(--w1); animation: drift 30s linear infinite, swell 6s ease-in-out infinite; }
 .waves .w2 { fill: var(--w2); animation: drift 21s linear -8s infinite reverse, swell 4.8s ease-in-out -1.6s infinite; }

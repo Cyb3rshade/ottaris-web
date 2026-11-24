@@ -20,7 +20,7 @@ Webseite der Dachmarke **Ottaris** unter `ottaris.com`. Gemeinsame Regeln: `../.
 | `raredrop.html` | Rare-Drop-Seite (`#funktionen`, `#vorschau`, `#hinweise`) |
 | `datenschutz.html` | Datenschutzerklärung (`noindex`), Kontakt `info@ottaris.com` |
 | `404.html` | Fehlerseite im selben Stil, absolute Pfade (GitHub liefert sie für jeden Pfad aus) |
-| `style.css` | Alles Aussehen. Farben nur über die Variablen oben (Werte aus `OTTARIS.md`), Hell über `prefers-color-scheme: light` |
+| `style.css` | Alles Aussehen (in den HTML-Dateien als `style.css?v=__BUILD__`, der Workflow ersetzt den Stempel, damit Browser nach einem Update nicht altes CSS zu neuem HTML mischen). Farben nur über die Variablen oben (Werte aus `OTTARIS.md`), Hell über `prefers-color-scheme: light` |
 | `img/zeichen.svg`, `img/schriftzug-*.svg`, `favicon-*.png`, `apple-touch-icon.png` | Aus dem Logo-Paket (siehe „Logo“). Nicht von Hand ändern, bei neuem Logo das Paket neu einspielen |
 | `img/raredrop-icon.svg` | Kopie von `rare-drop/web/public/icon.svg` |
 | `img/sterne-*.svg` | Sternenfelder, erzeugt mit `werkzeug/sterne.cjs` (fester Zufall) |
