@@ -34,7 +34,7 @@ jobs:
 
       - name: Nichts von außen laden
         run: |
-          if grep -nP '(src|href|srcset)="(https?:)?//(?!ottaris\.com/)' *.html || grep -nE 'url\((["'"'"'])?(https?:)?//' style.css || grep -nE '<script' *.html; then
+          if grep -nP '(src|href|srcset)="(https?:)?//(?!([a-z0-9-]+\.)?ottaris\.com[/"])' *.html || grep -nE 'url\((["'"'"'])?(https?:)?//' style.css || grep -nE '<script' *.html; then
             echo "::error::Externe Adresse oder Skript gefunden. Schriften und Bilder gehören ins Repo, die Seite kommt ohne Skripte aus."
             exit 1
           fi

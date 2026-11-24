@@ -1,6 +1,6 @@
 # ottaris.com
 
-Webseite der Dachmarke Ottaris. Zurzeit eine „Bald da“-Seite: statisch, ohne Skripte, ohne Verbindungen nach außen, Hell und Dunkel nach Geräte-Einstellung.
+Webseite der Dachmarke Ottaris. Einseitige Marken-Seite mit Rare Drop als erster App: statisch, ohne Skripte, ohne Verbindungen nach außen, Hell und Dunkel nach Geräte-Einstellung.
 
 - Veröffentlichen: Push auf `main`, der Workflow prüft und stellt die Seite auf GitHub Pages.
 - Domain einrichten: [ANLEITUNG-DOMAIN.md](ANLEITUNG-DOMAIN.md)
