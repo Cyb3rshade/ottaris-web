@@ -39,10 +39,17 @@ jobs:
             exit 1
           fi
 
+      - name: Keine offenen Platzhalter
+        run: |
+          if grep -nE '\[[A-ZÄÖÜ ]+ EINTRAGEN\]' *.html; then
+            echo "::error::Platzhalter in einer Seite (z. B. [NAME EINTRAGEN]). Erst ausfüllen, dann veröffentlichen."
+            exit 1
+          fi
+
       - name: Seite zusammenstellen
         run: |
           mkdir _site
-          cp -r index.html 404.html style.css favicon.svg favicon-32.png apple-touch-icon.png og.png img fonts _site/
+          cp -r index.html 404.html datenschutz.html style.css favicon.svg favicon-32.png apple-touch-icon.png og.png img fonts _site/
           echo "### Ottaris-Webseite, Stand $(date -u +%Y.%m.%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Pages einrichten
