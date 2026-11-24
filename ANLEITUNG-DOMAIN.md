@@ -33,7 +33,7 @@ In der DNS-Verwaltung von `ottaris.com` vorhandene Einträge für `@` (die Domai
 
 Der TXT-Eintrag aus Schritt 2 bleibt stehen. Manche Anbieter schreiben statt `@` einfach nichts oder den Domainnamen.
 
-**Bei checkdomain:** Domain anklicken → Kachel **checkdomain Nameserver** → **Profi-Einstellungen**. Hostname **leer** steht für die Domain selbst (`ottaris.com` wird hinten angehängt), bei `www` und beim TXT-Eintrag nur den vorderen Teil eintragen. TTL und Priorität leer lassen. Den vorhandenen MX-Eintrag (E-Mail) stehen lassen. In der Kachel **Domainweiterleitung** darf für `ottaris.com` nichts eingerichtet sein.
+**Bei checkdomain:** Domain anklicken → Kachel **checkdomain Nameserver** → **Profi-Einstellungen**. Hostname **leer** steht für die Domain selbst (`ottaris.com` wird hinten angehängt), bei `www` und beim TXT-Eintrag nur den vorderen Teil eintragen. TTL und Priorität leer lassen. Den vorhandenen MX-Eintrag (E-Mail) stehen lassen. **Wichtig:** Im Abschnitt **Haupt-IP-Adresse** stehen sonst checkdomain-Adressen, die zusätzlich veröffentlicht werden und das Zertifikat verhindern. Dort IPv4 `185.199.108.153` und IPv6 `2606:50c0:8000::153` eintragen. In der Kachel **Domainweiterleitung** darf für `ottaris.com` nichts eingerichtet sein.
 
 ## 4. Domain im Repo eintragen
 
