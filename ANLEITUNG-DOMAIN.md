@@ -54,7 +54,7 @@ Damit Rare Drop unter `raredrop.ottaris.com` läuft, verwaltet ab jetzt **Cloudf
 1. **Konto anlegen:** [dash.cloudflare.com](https://dash.cloudflare.com) → mit E-Mail registrieren, Zwei-Faktor-Anmeldung einschalten (*My Profile* → *Authentication*).
 2. **Domain hinzufügen:** *Add a domain* → `ottaris.com` → Plan **Free**. Cloudflare liest die bisherigen Einträge ein.
 3. **Einträge prüfen:** In der Liste müssen stehen: die vier **A**- und vier **AAAA**-Einträge für `ottaris.com`, **CNAME** `www` → `cyb3rshade.github.io`, der **TXT**-Eintrag `_github-pages-challenge-…` und der **MX**-Eintrag (E-Mail), falls vorhanden. Fehlt etwas, mit den Werten aus Schritt 3 oben ergänzen.
-4. **Wichtig:** Bei allen Einträgen für GitHub (A, AAAA, `www`) das orange Wölkchen antippen, bis es **grau** ist („DNS only“). Sonst kann GitHub kein Zertifikat ausstellen und „Enforce HTTPS“ hakt.
+4. **Wichtig:** Fremde A- und AAAA-Einträge (nicht `185.199.x.153` bzw. `2606:50c0:…`) löschen, Cloudflare übernimmt sie sonst vom alten Anbieter. Bei allen Einträgen für GitHub (A, AAAA, `www`) das orange Wölkchen antippen, bis es **grau** ist („DNS only“). Sonst kann GitHub kein Zertifikat ausstellen und „Enforce HTTPS“ hakt.
 5. Cloudflare zeigt dir zwei **Nameserver** (z. B. `ada.ns.cloudflare.com`). Bei checkdomain: Domain `ottaris.com` → **Nameserver** → „eigene Nameserver verwenden“ → die beiden Cloudflare-Nameserver eintragen, speichern. Falls dort **DNSSEC** eingeschaltet ist: vorher ausschalten (nach dem Umzug kannst du es in Cloudflare wieder einschalten).
 6. **Warten:** Meist 15 Minuten bis wenige Stunden. Cloudflare schickt eine E-Mail und zeigt die Domain als **Active**.
 7. **Prüfen:** `https://ottaris.com` zeigt weiter die Seite. Bei GitHub (Repo → *Settings* → *Pages*) steht der Haken für die Domain weiter auf grün.
@@ -67,6 +67,7 @@ Danach geht es auf dem Pi weiter: `apps/rare-drop/ANLEITUNG-PI.md`, Abschnitt �
 |---|---|
 | GitHub meldet „DNS check unsuccessful“ | Abwarten (bis 1 Stunde), Einträge auf Tippfehler prüfen, alte Parkseiten-Einträge gelöscht? |
 | „Enforce HTTPS“ lässt sich nicht anhaken | Zertifikat wird noch erstellt, später noch mal versuchen (bis 24 Stunden) |
+| „Enforce HTTPS“ geht auch nach Tagen nicht | Zusätzliche A- oder AAAA-Einträge, die nicht zu GitHub gehören (bei checkdomain z. B. `130.185.109.77` und `2a01:4a0:…`, kommen u. a. vom SSL-„Basis-Schutz“ des Anbieters). Den Anbieter-SSL ausschalten, die fremden Einträge löschen, bei GitHub die Domain entfernen und neu eintragen. Prüfen: `https://dns.google/resolve?name=ottaris.com&type=A` darf nur die vier `185.199.x.153` zeigen |
 | Seite unter `cyb3rshade.github.io/ottaris-web/` sieht kaputt aus | Nur die Fehlerseite nutzt feste Pfade, die passen erst mit der Domain. Die Startseite funktioniert unter beiden Adressen |
 | Nach dem Umzug zu Cloudflare zeigt GitHub „DNS check unsuccessful“ oder ein Zertifikatsfehler | In Cloudflare bei den GitHub-Einträgen das Wölkchen auf **grau** (DNS only) stellen, dann bei GitHub die Domain einmal entfernen und neu eintragen |
 | Workflow startet nicht („Waiting for a runner“) | Bei privatem Repo: Actions-Budget nicht 0 $ (siehe `ARCHITEKTUR.md`) |
